@@ -65,7 +65,7 @@
     "dotenv": "^16.0.3",
     "highlight.js": "^11.7.0",
     "js-yaml": "^4.1.0",
-    "layercake": "^7.2.2",
+    "layercake": "^7.3.4",
     "radix-icons-svelte": "^1.2.1",
     "search-query-parser": "^1.6.0",
     "svelte-debugger": "^1.0.5",
