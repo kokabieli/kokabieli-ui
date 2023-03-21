@@ -30,7 +30,7 @@
     "@types/d3-scale-chromatic": "^3.0.0",
     "@types/d3-zoom": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^5.53.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.5.0",
