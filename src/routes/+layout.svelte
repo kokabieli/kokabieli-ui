@@ -142,7 +142,7 @@
             <svelte:fragment slot='lead'>
                 <div class='flex items-center px-2 lg:px-0'>
                     <div class='flex-shrink-0 sm:px-4'>
-                        <img alt='kokabieli' class='block h-8 w-8' src='/static/kokabieli.svg'>
+                        <img alt='kokabieli' class='block h-8 w-8' src='/kokabieli.svg'>
 
                     </div>
                     <div class='ml-10 block'>
