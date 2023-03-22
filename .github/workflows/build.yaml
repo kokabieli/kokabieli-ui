@@ -9,6 +9,9 @@ on:
       - main
       - release/*
 
+permissions:
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
