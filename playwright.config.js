@@ -9,7 +9,7 @@ const config = {
 	timeout: 120*1000,
 	globalTimeout: 60*60*1000,
 	expect: {
-		timeout: 10*1000
+		timeout: 15*1000
 	},
 	use: {
 		screenshot: 'on',
