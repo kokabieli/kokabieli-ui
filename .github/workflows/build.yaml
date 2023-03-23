@@ -61,6 +61,7 @@ jobs:
 
       - name: archive screenshots
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: test-screenshots
           path: screenshots
