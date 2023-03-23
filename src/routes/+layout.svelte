@@ -84,7 +84,7 @@
 </script>
 
 <svelte:head>
-    <title>kokabiel - your constellation info</title>
+    <title>kokabieli - your constellation info</title>
 </svelte:head>
 
 
@@ -99,7 +99,7 @@
                 <h3>
                     <span
                         class='bg-gradient-to-br from-primary-500 via-tertiary-500 to-secondary-500 bg-clip-text text-transparent box-decoration-clone'>
-                        kokabiel
+                        kokabieli
                     </span>
                     <LightSwitch class='ml-48' />
                 </h3>
@@ -142,16 +142,14 @@
             <svelte:fragment slot='lead'>
                 <div class='flex items-center px-2 lg:px-0'>
                     <div class='flex-shrink-0 sm:px-4'>
-                        <img alt='kokabiel'
-                             class='block h-8 w-8'
-                             src='/static/kokabiel.svg'>
+                        <img alt='kokabieli' class='block h-8 w-8' src='/kokabieli.svg'>
 
                     </div>
                     <div class='ml-10 block'>
                         <h3>
                             <span
                                 class='bg-gradient-to-br from-primary-500 via-tertiary-500 to-secondary-500 bg-clip-text text-transparent box-decoration-clone'>
-                                kokabiel
+                                kokabieli
                             </span>
                         </h3>
                     </div>
