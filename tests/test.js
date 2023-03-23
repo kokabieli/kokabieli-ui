@@ -17,6 +17,8 @@ test('index page should show kokabieli', async ({ page }) => {
 	apiInfo(page).then(r => console.log(r));
 	sampleConstellation(page).then(r => console.log(r));
 	await page.goto('/');
+	expect(await page.$('svg')).toBeTruthy();
+	await page.screenshot({ path: 'screenshots/show-kokabieli.png', fullPage: true });
 	expect(await page.textContent('h3')).toBe('kokabieli');
 });
 
