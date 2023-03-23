@@ -9,11 +9,14 @@ const iconsDir = path.join(__dirname, '..', 'static', 'static', 'icons');
 
 let iconsData = { icons: {} };
 
-importCarbon();
-importFa();
-
-fs.writeFileSync(path.join(dataDir, 'icons.json'), JSON.stringify(iconsData));
-
+if (fs.existsSync(dataDir)) {
+    importCarbon();
+    importFa();
+    fs.writeFileSync(path.join(dataDir, 'icons.json'), JSON.stringify(iconsData));
+} else {
+    console.warn('data directory not found - skipping post installation script - ' +
+      'we are probably in a docker environment');
+}
 
 function importFa() {
     const fa = require('@fortawesome/fontawesome-free/metadata/icon-families.json');
