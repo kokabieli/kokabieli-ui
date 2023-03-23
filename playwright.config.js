@@ -10,7 +10,11 @@ const config = {
 	globalTimeout: 60*60*1000,
 	expect: {
 		timeout: 10*1000
-	}
+	},
+	use: {
+		screenshot: 'on',
+		video: 'on'
+	},
 };
 
 export default config;
