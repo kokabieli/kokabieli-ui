@@ -7,7 +7,145 @@ async function apiInfo(page) {
 }
 async function sampleConstellation(page) {
 	await page.route('/api/constellation', async route => {
-		const json = {"interfaces":[{"id":"bp","name":"BP","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"bp_flat","name":"BP (flat)","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"asset","name":"Asset","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"topic_asset_flat","name":"Asset (flat)","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"doc_xxx","name":"doc_XXX","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"doc_xxx_flat","name":"doc_XXX (flat)","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"code","name":"code_tab","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"users","name":"users","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"codedb","name":"code_tab db","type":"db","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"coderest","name":"code_tab rest","type":"rest","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"cont","name":"Container","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"cont_flat","name":"Container (flat)","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"bpcont","name":"BP \u0026 Container merged","type":"topic","color":"","kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""}],"processes":[{"id":"acomaze-persistor","name":"acomaze persistor","type":"spring-boot","color":"","inputs":[{"source":"code","info":"Code Tables","trigger":true},{"source":"asset","info":"Currencies","trigger":true},{"source":"users","info":"Users","trigger":true}],"outputs":[{"target":"codedb","info":"persist","trigger":true}],"kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"acomaze-rest","name":"acomaze rest","type":"spring-boot","color":"","inputs":[{"source":"codedb","info":"Code Tables / Users / etc."}],"outputs":[{"target":"coderest","info":"serve"}],"kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"bp_flatter","name":"data miner - bp","type":"spring-boot","color":"","inputs":[{"source":"bp","info":"","trigger":true},{"source":"coderest","info":"fetch codes"}],"outputs":[{"target":"bp_flat","info":"BP","trigger":true}],"kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"cont_flatter","name":"data miner - cont","type":"spring-boot","color":"","inputs":[{"source":"cont","info":"","trigger":true},{"source":"coderest","info":"fetch codes"}],"outputs":[{"target":"cont_flat","info":"Cont","trigger":true}],"kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"asset_flat","name":"data miner - asset","type":"spring-boot","color":"","inputs":[{"source":"asset","info":"","trigger":true},{"source":"coderest","info":"fetch codes"}],"outputs":[{"target":"topic_asset_flat","info":"Asset","trigger":true}],"kubernetesInfo":null,"labels":{"kokabie.li":"sample"},"description":""},{"id":"bp_cont_combiner","name":"bp cont combiner","type":"spring-boot","color":"","inputs":[{"source":"cont_flat","info":"","trigger":true},{"source":"bp_flat","info":"","trigger":true}],"outputs":[{"target":"bpcont","info":"Combined","trigger":true}],"kubernetesInfo":null,"labels":null,"description":""},{"id":"doc_xxx_processor","name":"data miner - doc_xxx","type":"spring-boot","color":"","inputs":[{"source":"doc_xxx","info":"","trigger":true},{"source":"coderest","info":"fetch codes"}],"outputs":[{"target":"doc_xxx_flat","info":"doc_xxx","trigger":true}],"kubernetesInfo":null,"labels":{"doc":"xxx"},"description":""}]};
+		const json = {
+			"interfaces": [
+				{
+					"id": "client",
+					"name": "client",
+					"type": "topic",
+					"color": "",
+					"kubernetesInfo": null,
+					"labels": {
+						"kokabie.li": "sample"
+					},
+					"description": ""
+				},
+				{
+					"id": "client_flat",
+					"name": "client (flat)",
+					"type": "topic",
+					"color": "",
+					"kubernetesInfo": null,
+					"labels": {
+						"kokabie.li": "sample"
+					},
+					"description": ""
+				},
+				{
+					"id": "portfolio",
+					"name": "portfolio",
+					"type": "topic",
+					"color": "",
+					"kubernetesInfo": null,
+					"labels": {
+						"kokabie.li": "sample"
+					},
+					"description": ""
+				},
+				{
+					"id": "portfolio_flat",
+					"name": "portfolio (flat)",
+					"type": "topic",
+					"color": "",
+					"kubernetesInfo": null,
+					"labels": {
+						"kokabie.li": "sample"
+					},
+					"description": ""
+				},
+				{
+					"id": "portfolio_client_merged",
+					"name": "Client \u0026 Portfolio merged",
+					"type": "topic",
+					"color": "",
+					"kubernetesInfo": null,
+					"labels": {
+						"kokabie.li": "sample"
+					},
+					"description": ""
+				}
+			],
+			"processes": [
+				{
+					"id": "client_flatter",
+					"name": "client flatter",
+					"type": "spring-boot",
+					"color": "",
+					"inputs": [
+						{
+							"source": "client",
+							"info": "",
+							"trigger": true
+						}
+					],
+					"outputs": [
+						{
+							"target": "client_flat",
+							"info": "clients",
+							"trigger": true
+						}
+					],
+					"kubernetesInfo": null,
+					"labels": {
+						"kokabie.li": "sample"
+					},
+					"description": ""
+				},
+				{
+					"id": "portfolio_flatter",
+					"name": "portfolio flatter",
+					"type": "spring-boot",
+					"color": "",
+					"inputs": [
+						{
+							"source": "portfolio",
+							"info": "",
+							"trigger": true
+						}
+					],
+					"outputs": [
+						{
+							"target": "portfolio_flat",
+							"info": "portfolio",
+							"trigger": true
+						}
+					],
+					"kubernetesInfo": null,
+					"labels": {
+						"kokabie.li": "sample"
+					},
+					"description": ""
+				},
+				{
+					"id": "client_portfolio_merger",
+					"name": "client portfolio merger",
+					"type": "spring-boot",
+					"color": "",
+					"inputs": [
+						{
+							"source": "client_flat",
+							"info": "",
+							"trigger": true
+						},
+						{
+							"source": "portfolio_flat",
+							"info": "",
+							"trigger": true
+						}
+					],
+					"outputs": [
+						{
+							"target": "portfolio_client_merged",
+							"info": "portfolio_client_merged",
+							"trigger": true
+						}
+					],
+					"kubernetesInfo": null,
+					"labels": null,
+					"description": ""
+				}
+			]
+		};
 		await route.fulfill({ json });
 	});
 }
