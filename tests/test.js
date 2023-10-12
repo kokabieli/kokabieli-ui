@@ -176,6 +176,6 @@ test('index page should show a graph', async ({ page }) => {
 	expect(await page.$('id=portfolio_flat')).toBeTruthy();
 	await page.screenshot({ path: 'screenshots/root-graphed.png', fullPage: true });
 	await page.click('id=portfolio_flat');
-	expect(await page.textContent('h2')).toBe('portfolio_flat');
+	expect(await page.textContent('h2')).toBe('portfolio (flat)');
 	await page.screenshot({ path: 'screenshots/root-clicked.png', fullPage: true });
 });
