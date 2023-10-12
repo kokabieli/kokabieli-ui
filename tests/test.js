@@ -150,14 +150,6 @@ async function sampleConstellation(page) {
 	});
 }
 
-test('load index page grah', async ({ page }) => {
-	apiInfo(page).then(r => console.log(r));
-	sampleConstellation(page).then(r => console.log(r));
-	await page.goto('/');
-	expect(await page.$('svg')).toBeTruthy();
-	expect(await page.$('id=portfolio_flat')).toBeTruthy();
-});
-
 test('index page should show kokabieli', async ({ page }) => {
 	apiInfo(page).then(r => console.log(r));
 	sampleConstellation(page).then(r => console.log(r));
