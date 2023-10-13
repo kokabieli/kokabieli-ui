@@ -155,15 +155,8 @@ test('index page should show kokabieli', async ({ page }) => {
 	sampleConstellation(page).then(r => console.log(r));
 	await page.goto('/');
 	expect(await page.$('svg')).toBeTruthy();
+	await page.screenshot({ path: 'screenshots/show-kokabieli.png', fullPage: true });
 	expect(await page.textContent('h3')).toBe('kokabieli');
-});
-
-test('load index page grah', async ({ page }) => {
-	apiInfo(page).then(r => console.log(r));
-	sampleConstellation(page).then(r => console.log(r));
-	await page.goto('/');
-	expect(await page.$('svg')).toBeTruthy();
-	expect(await page.$('id=asset_flat')).toBeTruthy();
 });
 
 test('index page should show a graph', async ({ page }) => {
@@ -172,9 +165,9 @@ test('index page should show a graph', async ({ page }) => {
 	await page.goto('/');
 	expect(await page.$('svg')).toBeTruthy();
 	await page.screenshot({ path: 'screenshots/root-index.png', fullPage: true });
-	expect(await page.$('id=asset_flat')).toBeTruthy();
+	expect(await page.$('id=portfolio_flat')).toBeTruthy();
 	await page.screenshot({ path: 'screenshots/root-graphed.png', fullPage: true });
-	await page.click('id=asset_flat');
-	expect(await page.textContent('h2')).toBe('data miner - asset');
+	await page.click('id=portfolio_flat');
+	expect(await page.textContent('h2')).toBe('portfolio (flat)');
 	await page.screenshot({ path: 'screenshots/root-clicked.png', fullPage: true });
 });
