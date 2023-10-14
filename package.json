@@ -27,7 +27,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/d3-drag": "^3.0.2",
     "@types/d3-force": "^3.0.4",
-    "@types/d3-scale": "^4.0.3",
+    "@types/d3-scale": "^4.0.5",
     "@types/d3-scale-chromatic": "^3.0.0",
     "@types/d3-zoom": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
