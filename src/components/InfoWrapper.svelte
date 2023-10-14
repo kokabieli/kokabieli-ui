@@ -3,12 +3,12 @@
     import InteractiveGraph from './InteractiveGraph.svelte';
     import NodeInfo from './NodeInfo.svelte';
     import { Transition, TransitionChild } from '@rgossiaux/svelte-headlessui';
-    import { globalGraph } from '../lib/store';
+    import { globalGraph } from "$lib/store";
 
     import '../lib/calculator';
     import { selectedGraph } from '$lib/store.js';
     import type { DrawerSettings } from '@skeletonlabs/skeleton';
-    import { drawerStore } from '@skeletonlabs/skeleton';
+    import { getDrawerStore } from '@skeletonlabs/skeleton';
 
 
     let openDetails = false;
@@ -20,7 +20,7 @@
                     id: 'NodeInfo',
                     meta: { node:n }
                 };
-                drawerStore.open(settings);
+                getDrawerStore().open(settings);
             }
         }
         openDetails = true;

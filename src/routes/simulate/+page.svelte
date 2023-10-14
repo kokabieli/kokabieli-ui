@@ -4,10 +4,10 @@
     import { onMount } from 'svelte';
     import { load } from 'js-yaml';
 
-    import { rawData } from '../../lib/store';
-    import type { Constellation } from '../../lib/Constellation';
+    import { rawData } from "$lib/store";
+    import type { Constellation } from "$lib/Constellation";
     import type { ToastSettings } from '@skeletonlabs/skeleton';
-    import { toastStore } from '@skeletonlabs/skeleton';
+    import { getToastStore } from '@skeletonlabs/skeleton';
 
 
     const example = "interfaces:\n" +
@@ -66,7 +66,7 @@
                 // Optional: Adds a custom action button
 
             };
-            toastStore.trigger(t);
+            getToastStore().trigger(t);
         } catch (e) {
             console.error(e);
             const t: ToastSettings = {
@@ -79,7 +79,7 @@
                 // Optional: Adds a custom action button
 
             };
-            toastStore.trigger(t);
+            getToastStore().trigger(t);
         }
     }
 

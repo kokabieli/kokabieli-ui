@@ -1,40 +1,42 @@
 <script lang='ts'>
 
     //import '../theme.postcss';
-    import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
     import '../app.postcss';
-    import '@skeletonlabs/skeleton/styles/all.css';
     import '@fortawesome/fontawesome-free/css/all.css';
     import type { DrawerSettings } from '@skeletonlabs/skeleton';
     import {
         AppBar,
         AppShell,
         Drawer,
-        drawerStore,
         InputChip,
         LightSwitch,
         SlideToggle,
         storeHighlightJs,
-        Toast
+        getDrawerStore,
+        Toast,
+        initializeStores
     } from '@skeletonlabs/skeleton';
     import Query from 'carbon-icons-svelte/lib/Query.svelte';
 
-    import { includeNeighbours, labelsFilter, search, showLabels, triggersOnly } from '$lib/store.ts';
+    import { includeNeighbours, labelsFilter, search, showLabels, triggersOnly } from "$lib/store";
 
     import hljs from 'highlight.js';
     import 'highlight.js/styles/github-dark.css';
     import NodeInfo from '../components/NodeInfo.svelte';
-    import type { Constellation } from '../lib/Constellation';
+    import type { Constellation } from "$lib/Constellation";
     import { onMount } from 'svelte';
     import { queryParam, ssp } from 'sveltekit-search-params';
-    import { fetchData } from '$lib/graphLoader.js';
+    import { fetchData } from '$lib/graphLoader';
 
     storeHighlightJs.set(hljs);
+
+
+    initializeStores();
 
     // Drawer Handler
     function drawerOpen(): void {
         const s: DrawerSettings = { id: 'doc-sidenav' };
-        drawerStore.open(s);
+        getDrawerStore().open(s);
     }
 
 
@@ -91,9 +93,9 @@
 <Toast />
 
 <Drawer>
-    {#if $drawerStore.id === 'NodeInfo'}
-        <NodeInfo node={$drawerStore.meta.node} />
-    {:else if $drawerStore.id === 'doc-sidenav' }
+    {#if getDrawerStore().id === 'NodeInfo'}
+        <NodeInfo node={getDrawerStore().meta.node} />
+    {:else if getDrawerStore().id === 'doc-sidenav' }
         <div class='p-4'>
             <div class='p-4'>
                 <h3>
