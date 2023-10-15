@@ -1,8 +1,6 @@
 <script lang='ts'>
     import { LayerCake } from 'layercake';
     import InteractiveGraph from './InteractiveGraph.svelte';
-    import NodeInfo from './NodeInfo.svelte';
-    import { Transition, TransitionChild } from '@rgossiaux/svelte-headlessui';
     import { globalGraph } from "$lib/store";
 
     import '../lib/calculator';
@@ -12,6 +10,7 @@
 
 
     let openDetails = false;
+    const drawerStore = getDrawerStore();
 
     function handleNodeClick(event) {
         for (let n of $globalGraph.nodes) {
@@ -20,7 +19,7 @@
                     id: 'NodeInfo',
                     meta: { node:n }
                 };
-                getDrawerStore().open(settings);
+                drawerStore.open(settings);
             }
         }
         openDetails = true;

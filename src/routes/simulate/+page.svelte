@@ -9,6 +9,7 @@
     import type { ToastSettings } from '@skeletonlabs/skeleton';
     import { getToastStore } from '@skeletonlabs/skeleton';
 
+    const toastStore = getToastStore();
 
     const example = "interfaces:\n" +
         "  - id: di1\n" +
@@ -66,7 +67,7 @@
                 // Optional: Adds a custom action button
 
             };
-            getToastStore().trigger(t);
+            toastStore.trigger(t);
         } catch (e) {
             console.error(e);
             const t: ToastSettings = {
@@ -79,7 +80,7 @@
                 // Optional: Adds a custom action button
 
             };
-            getToastStore().trigger(t);
+            toastStore.trigger(t);
         }
     }
 
