@@ -1,7 +1,7 @@
 <script lang='ts'>
-    import { labelsFilter, searchFrom, searchTo } from '../lib/store';
-    import type { Node } from '../lib/Graph';
-    import { clearFromTo } from '../lib/calculatorSearchResult';
+    import { labelsFilter, searchFrom, searchTo } from "$lib/store";
+    import type { Node } from "$lib/Graph";
+    import { clearFromTo } from "$lib/calculatorSearchResult";
     import { CodeBlock } from '@skeletonlabs/skeleton';
     import { Add,Subtract } from 'carbon-icons-svelte';
 
@@ -50,7 +50,7 @@
     <h2 class='p-5'>{node.name}</h2>
     <ul class='list p-5'>
         <li><span class='w-48'>Id</span>
-            <span>{node.data.id}</span>
+            <span>{node.data.source.namespace}/{node.data.source.name}</span>
         </li>
         <li><span class='w-48'>Filter</span>
             <span>

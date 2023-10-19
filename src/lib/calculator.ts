@@ -1,3 +1,3 @@
-import './calculatorGlobalGraph'
-import './calculatorGraphFilter'
-import './calculatorSearchResult'
+import "./calculatorGlobalGraph";
+import "./calculatorGraphFilter";
+import "./calculatorSearchResult";
