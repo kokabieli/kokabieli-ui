@@ -1,0 +1,22 @@
+[
+  {
+    "fileName": "constellation-sample.json",
+    "name": "sample constellation",
+    "description": "This is a sample constellation",
+    "lastUpdated": "2023-10-18T21:19:17Z",
+    "source": {
+      "namespace": "default",
+      "name": "dataprocess-sample"
+    }
+  },
+  {
+    "fileName": "sample.json",
+    "name": "sample complex constellation",
+    "description": "This is a sample constellation",
+    "lastUpdated": "2023-10-18T21:19:17Z",
+    "source": {
+      "namespace": "default",
+      "name": "manually"
+    }
+  }
+]

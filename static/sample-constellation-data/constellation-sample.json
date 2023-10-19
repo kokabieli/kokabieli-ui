@@ -1,0 +1,66 @@
+{
+  "name": "sample constellation",
+  "description": "This is a sample constellation",
+  "lastUpdated": "2023-10-18T21:19:17Z",
+  "dataInterfaceList": [
+    {
+      "name": "datainterface-sample",
+      "reference": "default/datainterface-sample",
+      "type": "datainterface",
+      "description": "This is a sample DataInterface",
+      "labels": {
+        "app.kubernetes.io/created-by": "kokabieli-operator",
+        "app.kubernetes.io/instance": "datainterface-sample",
+        "app.kubernetes.io/managed-by": "kustomize",
+        "app.kubernetes.io/name": "datainterface",
+        "app.kubernetes.io/part-of": "kokabieli-operator"
+      },
+      "source": {
+        "namespace": "default",
+        "name": "datainterface-sample"
+      }
+    },
+    {
+      "name": "datainterface-sample",
+      "reference": "datainterface-sample",
+      "type": "missing",
+      "description": "missing",
+      "source": {
+        "namespace": "default",
+        "name": "dataprocess-sample"
+      }
+    }
+  ],
+  "dataProcessList": [
+    {
+      "name": "dataprocess-sample",
+      "type": "dataprocess",
+      "description": "This is a sample DataProcess",
+      "inputs": [
+        {
+          "reference": "datainterface-sample",
+          "trigger": true,
+          "description": "This is a sample input"
+        }
+      ],
+      "outputs": [
+        {
+          "reference": "datainterface-sample",
+          "trigger": true,
+          "description": "This  is a sample output"
+        }
+      ],
+      "labels": {
+        "app.kubernetes.io/created-by": "kokabieli-operator",
+        "app.kubernetes.io/instance": "dataprocess-sample",
+        "app.kubernetes.io/managed-by": "kustomize",
+        "app.kubernetes.io/name": "dataprocess",
+        "app.kubernetes.io/part-of": "kokabieli-operator"
+      },
+      "source": {
+        "namespace": "default",
+        "name": "dataprocess-sample"
+      }
+    }
+  ]
+}
