@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kokabieli-ui
+  labels:
+    control-plane: kokabieli-ui
+    app.kubernetes.io/name: deployment
+    app.kubernetes.io/instance: kokabieli-ui
+    app.kubernetes.io/component: kokabieli-ui
+    app.kubernetes.io/created-by: kokabieli-ui
+    app.kubernetes.io/part-of: kokabieli-ui
+    app.kubernetes.io/managed-by: kustomize
+spec:
+  selector:
+    matchLabels:
+      control-plane: kokabieli-ui
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: kokabieli-ui
+      labels:
+        control-plane: kokabieli-ui
+    spec:
+#      securityContext:
+#        runAsNonRoot: true
+      terminationGracePeriodSeconds: 10
+      containers:
+        - image: kokabieli-ui:latest
+          name: kokabieli-ui
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          volumeMounts:
+            - name: constellations-cm
+              mountPath: /usr/local/apache2/htdocs/constellation-data
+      volumes:
+        - name: constellations-cm
+          configMap:
+            name: constellations
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kokabieli-ui
+  labels:
+    control-plane: kokabieli-ui
+    app.kubernetes.io/name: service
+    app.kubernetes.io/instance: kokabieli-ui
+    app.kubernetes.io/component: kokabieli-ui
+    app.kubernetes.io/created-by: kokabieli-ui
+    app.kubernetes.io/part-of: kokabieli-ui
+    app.kubernetes.io/managed-by: kustomize
+spec:
+    ports:
+        - name: http
+          port: 3000
+          protocol: TCP
+          targetPort: 3000
+    selector:
+        control-plane: kokabieli-ui
+    type: LoadBalancer
