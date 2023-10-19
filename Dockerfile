@@ -4,8 +4,8 @@ WORKDIR /usr/src/app
 COPY scripts /usr/src/app/scripts
 COPY package*.json /usr/src/app/
 RUN npm ci
-RUN npm run postinstall
 COPY . /usr/src/app/
+RUN npm run postinstall
 RUN npm run build
 # --------------> The production image
 FROM httpd:2.4.57-alpine
