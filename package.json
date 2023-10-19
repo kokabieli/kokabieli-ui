@@ -22,7 +22,7 @@
     "@sveltejs/adapter-node": "^1.2.3",
     "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "1.25.2",
-    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "@types/d3-drag": "^3.0.2",
