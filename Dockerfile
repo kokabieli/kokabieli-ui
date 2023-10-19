@@ -8,6 +8,7 @@ COPY . /usr/src/app/
 RUN npm run postinstall
 RUN npm run build
 # --------------> The production image
-FROM httpd:2.4.57-alpine
-COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
-COPY --from=build /usr/src/app/build /usr/local/apache2/htdocs/
+FROM  ghcr.io/nginxinc/nginx-unprivileged:1.25.2-alpine-slim
+WORKDIR /usr/share/nginx/html
+COPY Docker.nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /usr/src/app/build /usr/share/nginx/html

@@ -22,14 +22,15 @@ spec:
       labels:
         control-plane: kokabieli-ui
     spec:
-#      securityContext:
-#        runAsNonRoot: true
+      automountServiceAccountToken: false
       terminationGracePeriodSeconds: 10
       containers:
         - image: kokabieli-ui:latest
           name: kokabieli-ui
           securityContext:
+            readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
+            runAsNonRoot: true
             capabilities:
               drop:
                 - "ALL"
@@ -54,11 +55,19 @@ spec:
               memory: 64Mi
           volumeMounts:
             - name: constellations-cm
-              mountPath: /usr/local/apache2/htdocs/constellation-data
+              mountPath: /usr/share/nginx/html/constellation-data
+            - name: cache
+              mountPath: /var/cache/nginx
+            - name: tmp
+              mountPath: /tmp
       volumes:
         - name: constellations-cm
           configMap:
             name: constellations
+        - name: cache
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
