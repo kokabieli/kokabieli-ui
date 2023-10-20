@@ -1,5 +1,5 @@
 # --------------> The build image
-FROM node:20.8.1 AS build
+FROM node:21.0.0 AS build
 WORKDIR /usr/src/app
 COPY scripts /usr/src/app/scripts
 COPY package*.json /usr/src/app/
