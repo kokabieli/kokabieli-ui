@@ -1,4 +1,4 @@
-import type { DataInterfaceDefinition, DataProcessDefinition } from './Constellation';
+import type { ConstellationInterface, ConstellationDataProcess } from './interface';
 import type { SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
 
 export interface Graph {
@@ -14,12 +14,15 @@ export interface Node extends SimulationNodeDatum{
     type: string;
     color: string;
     icon: string;
-    data?: DataProcessDefinition | DataInterfaceDefinition;
+    data?: ConstellationDataProcess | ConstellationInterface;
     labels: Label[];
     selected: boolean;
     matched?: string;
     includeSources: boolean;
     includeTargets: boolean;
+    source: string;
+    isInterface: boolean;
+    isProcess: boolean;
 }
 
 export interface Label {

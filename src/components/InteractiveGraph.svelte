@@ -7,8 +7,8 @@
   import { drag } from "d3-drag";
   import type { Simulation } from "d3-force";
   import { forceCenter, forceCollide, forceLink, forceManyBody, forceSimulation } from "d3-force";
-  import { showLabels } from "../lib/store.js";
-  import type { Graph, Link, Node } from "../lib/Graph";
+  import { showLabels } from "$lib/store";
+  import type { Graph, Link, Node } from "$lib/Graph";
 
   import { icons } from "../data/icons.json";
 

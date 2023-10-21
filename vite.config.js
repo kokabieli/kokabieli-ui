@@ -8,7 +8,10 @@ const config = {
 	},
 	server: {
 		proxy: {
-			'/api': 'http://localhost:1323',
+			'/constellation-data': {
+				target: 'http://localhost:5173/sample-constellation-data',
+				rewrite: (path) => path.replace(/^\/constellation-data/, '\/'),
+			},
 		},
 	},
 

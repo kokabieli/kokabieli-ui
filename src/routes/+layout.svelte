@@ -23,10 +23,12 @@
     import hljs from "highlight.js";
     import "highlight.js/styles/github-dark.css";
     import NodeInfo from "../components/NodeInfo.svelte";
-    import type { Constellation } from "$lib/Constellation";
     import { onMount } from "svelte";
     import { queryParam, ssp } from "sveltekit-search-params";
-    import { fetchData } from "$lib/graphLoader";
+    import { fetchData } from "$lib/graphLoader.js";
+    import { writable } from "svelte/store";
+
+    let fileParam = writable<string | null>("");
 
     storeHighlightJs.set(hljs);
 
@@ -40,16 +42,13 @@
         drawerStore.open(s);
     }
 
-
-    async function showInfo(): Promise<Constellation> {
-        const res = await fetch(`/api/info`);
-        console.log(await res.text());
+    function resetConstellation(): void {
+        fileParam.set("");
     }
 
     onMount(() => {
-        showInfo();
-
         const searchParam = queryParam("search", ssp.string(""));
+        fileParam = queryParam("file", ssp.string(""));
 
         let unsubSearch = search.subscribe((v) => {
             searchParam.set(v);
@@ -99,7 +98,7 @@
     {:else if drawerStore.id === 'doc-sidenav' }
         <div class="p-4">
             <div class="p-4">
-                <h3>
+                <h3 on:click={resetConstellation}>
                     <span
                             class="bg-gradient-to-br from-primary-500 via-tertiary-500 to-secondary-500 bg-clip-text text-transparent box-decoration-clone">
                         kokabieli

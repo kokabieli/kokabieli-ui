@@ -1,0 +1,154 @@
+{
+  "dataInterfaceList": [
+    {
+      "reference": "client",
+      "name": "client",
+      "type": "topic",
+      "labels": {
+        "kokabie.li": "sample"
+      },
+      "description": "",
+      "source": {
+        "name": "client_flatter",
+        "namespace": "kokabie.test"
+      }
+    },
+    {
+      "reference": "client_flat",
+      "name": "client (flat)",
+      "type": "topic",
+      "labels": {
+        "kokabie.li": "sample"
+      },
+      "description": "",
+      "source": {
+        "name": "client_flatter",
+        "namespace": "kokabie.test"
+      }
+    },
+    {
+      "reference": "portfolio",
+      "name": "portfolio",
+      "type": "topic",
+      "labels": {
+        "kokabie.li": "sample"
+      },
+      "description": "",
+      "source": {
+        "name": "portfolio_flatter",
+        "namespace": "kokabie.test"
+      }
+    },
+    {
+      "reference": "portfolio_flat",
+      "name": "portfolio (flat)",
+      "type": "topic",
+      "labels": {
+        "kokabie.li": "sample"
+      },
+      "description": "",
+      "source": {
+        "name": "portfolio_flatter",
+        "namespace": "kokabie.test"
+      }
+    },
+    {
+      "reference": "portfolio_client_merged",
+      "name": "Client \u0026 Portfolio merged",
+      "type": "topic",
+      "labels": {
+        "kokabie.li": "sample"
+      },
+      "description": "",
+      "source": {
+        "name": "client_portfolio_merger",
+        "namespace": "kokabie.test"
+      }
+    }
+  ],
+  "dataProcessList": [
+    {
+      "name": "client flatter",
+      "type": "spring-boot",
+      "inputs": [
+        {
+          "reference": "client",
+          "info": "",
+          "trigger": true
+        }
+      ],
+      "outputs": [
+        {
+          "reference": "client_flat",
+          "info": "clients",
+          "trigger": true
+        }
+      ],
+      "kubernetesInfo": null,
+      "labels": {
+        "kokabie.li": "sample"
+      },
+      "description": "",
+      "source": {
+        "name": "client_flatter",
+        "namespace": "kokabie.test"
+      }
+    },
+    {
+      "name": "portfolio flatter",
+      "type": "spring-boot",
+      "inputs": [
+        {
+          "reference": "portfolio",
+          "info": "",
+          "trigger": true
+        }
+      ],
+      "outputs": [
+        {
+          "reference": "portfolio_flat",
+          "info": "portfolio",
+          "trigger": true
+        }
+      ],
+      "kubernetesInfo": null,
+      "labels": {
+        "kokabie.li": "sample"
+      },
+      "description": "",
+      "source": {
+        "name": "portfolio_flatter",
+        "namespace": "kokabie.test"
+      }
+    },
+    {
+      "name": "client portfolio merger",
+      "type": "spring-boot",
+      "inputs": [
+        {
+          "reference": "client_flat",
+          "info": "",
+          "trigger": true
+        },
+        {
+          "reference": "portfolio_flat",
+          "info": "",
+          "trigger": true
+        }
+      ],
+      "outputs": [
+        {
+          "reference": "portfolio_client_merged",
+          "info": "portfolio_client_merged",
+          "trigger": true
+        }
+      ],
+      "labels": {},
+      "description": "",
+      "source": {
+        "name": "client_portfolio_merger",
+        "namespace": "kokabie.test"
+      }
+    }
+  ]
+}
