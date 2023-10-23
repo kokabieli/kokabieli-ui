@@ -18,14 +18,14 @@
   } from "@skeletonlabs/skeleton";
   import Query from "carbon-icons-svelte/lib/Query.svelte";
 
-  import { includeNeighbours, labelsFilter, search, showLabels, triggersOnly } from "$lib/store";
+  import { includeNeighbours, labelsFilter, search, searchText, showLabels, triggersOnly } from "$lib/store";
 
   import hljs from "highlight.js";
   import "highlight.js/styles/github-dark.css";
   import NodeInfo from "../components/NodeInfo.svelte";
   import { onMount } from "svelte";
   import { queryParam, ssp } from "sveltekit-search-params";
-  import { fetchData } from "$lib/graphLoader.js";
+  import { refetchData, resetGraph } from "$lib/graphLoader.js";
   import { writable } from "svelte/store";
 
   let fileParam = writable<string | null>("");
@@ -42,13 +42,9 @@
     drawerStore.open(s);
   }
 
-  function resetConstellation(): void {
-    fileParam.set("");
-  }
 
   onMount(() => {
     const searchParam = queryParam("search", ssp.string(""));
-    fileParam = queryParam("file", ssp.string(""));
 
     let unsubSearch = search.subscribe((v) => {
       searchParam.set(v);
@@ -65,6 +61,15 @@
     };
   });
 
+  function refetchGraph() {
+    refetchData();
+    drawerStore.close();
+  }
+
+  function showIndex() {
+    resetGraph();
+    drawerStore.close();
+  }
 
   console.log("                             .,\n" +
     "                  ...,     .+D     `.V!\n" +
@@ -111,7 +116,7 @@
           <div class="input-group-shim">
             <Query />
           </div>
-          <input type="search" placeholder="Search..." bind:value={$search} />
+          <input type="search" placeholder="Search..." bind:value={$searchText} />
         </div>
       </div>
       <div class="label w-96 p-4">
@@ -129,7 +134,10 @@
         <SlideToggle name="labels" size="sm" bind:checked={$showLabels}>show labels</SlideToggle>
       </div>
       <div class="p-4">
-        <button class="btn variant-ghost-primary" on:click={fetchData}>fetch graph</button>
+        <button class="btn variant-ghost-primary" on:click={refetchGraph}>refetch constellation</button>
+      </div>
+      <div class="p-4">
+        <button class="btn variant-ghost-primary" on:click={showIndex}>list available constellations</button>
       </div>
     </div>
   {:else }
@@ -142,17 +150,16 @@
     <!-- App Bar -->
     <AppBar padding="p-2">
       <svelte:fragment slot="lead">
-        <div class="flex items-center px-2 lg:px-0" on:click={resetConstellation}>
+        <div class="flex items-center px-2 lg:px-0" on:click={resetGraph}>
           <div class="flex-shrink-0 sm:px-4">
             <img alt="kokabieli" class="block h-8 w-8" src="/kokabieli.svg">
-
           </div>
           <div class="ml-10 block">
             <h3>
-                            <span
-                              class="bg-gradient-to-br from-primary-500 via-tertiary-500 to-secondary-500 bg-clip-text text-transparent box-decoration-clone">
-                                kokabieli
-                            </span>
+              <span
+                class="bg-gradient-to-br from-primary-500 via-tertiary-500 to-secondary-500 bg-clip-text text-transparent box-decoration-clone">
+                  kokabieli
+              </span>
             </h3>
           </div>
         </div>
@@ -171,7 +178,7 @@
             <div class="input-group-shim">
               <Query />
             </div>
-            <input bind:value={$search} placeholder="Search..." type="search" />
+            <input bind:value={$searchText} placeholder="Search..." type="search" />
           </div>
         </div>
         <LightSwitch class="hidden md:block" />

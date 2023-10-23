@@ -14,6 +14,7 @@ export const globalGraph = writable<Graph>({ nodes: [], links: [] });
 export const selectedGraph = writable<Graph>({ nodes: [], links: [] });
 export const searchFrom = writable("");
 export const searchTo = writable("");
+export const searchText = writable("");
 export const labelsFilter = writable<string[]>([]);
 export const rawSearch = writable<SearchParseEvent>({ detail: {}, source: "initial" });
 export const searchParams = writable<SearchParams>({
