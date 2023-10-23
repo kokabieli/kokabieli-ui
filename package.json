@@ -46,7 +46,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@carbon/icon-helpers": "^10.39.0",
+    "@carbon/icon-helpers": "^10.44.0",
     "@carbon/icons": "^11.28.0",
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@steeze-ui/heroicons": "^2.2.1",
