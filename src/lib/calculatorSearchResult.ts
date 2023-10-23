@@ -1,12 +1,13 @@
 import {
-    includeNeighbours,
-    labelsFilter,
-    rawSearch,
-    search,
-    searchFrom,
-    searchParams,
-    searchTo,
-    triggersOnly
+  includeNeighbours,
+  labelsFilter,
+  rawSearch,
+  search,
+  searchFrom,
+  searchParams,
+  searchText,
+  searchTo,
+  triggersOnly
 } from "./store";
 import type { SearchParserResult } from "search-query-parser";
 import { parse, stringify } from "search-query-parser";
@@ -62,6 +63,9 @@ rawSearch.subscribe((spe) => {
   if (spe.source != "labelsFilter") {
     labelsFilter.set(params.labels);
   }
+  if (spe.source != "text") {
+    searchText.set(params.text.length > 0 ? params.text.join(" ") : "");
+  }
   searchParams.set(params);
 });
 
@@ -73,6 +77,17 @@ export function clearFromTo() {
     return p;
   });
 }
+
+searchText.subscribe((s) => {
+  rawSearch.update((p) => {
+    return {
+      source: "text",
+      detail: {
+        text: [s]
+      }
+    };
+  });
+});
 
 searchFrom.subscribe((s) => {
   if (s != "") {

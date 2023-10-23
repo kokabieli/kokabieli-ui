@@ -3,12 +3,13 @@
   import InteractiveGraph from "./InteractiveGraph.svelte";
   import { globalGraph, selectedGraph } from "$lib/store";
 
-  import "../lib/calculator";
-  import type { DrawerSettings } from "@skeletonlabs/skeleton";
-  import { drawerStore } from "@skeletonlabs/skeleton";
+    import '../lib/calculator';
+    import type { DrawerSettings } from '@skeletonlabs/skeleton';
+    import { getDrawerStore } from '@skeletonlabs/skeleton';
 
 
   let openDetails = false;
+  const drawerStore = getDrawerStore();
 
   function handleNodeClick(event: any) {
     for (let n of $globalGraph.nodes) {
