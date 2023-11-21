@@ -24,6 +24,8 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    env:
+      DOCKER_PLATFORMS: linux/amd64
 
     steps:
       - name: Checkout repository
@@ -31,7 +33,7 @@ jobs:
 
       - name: Install cosign
         if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 #v3.1.2
+        uses: sigstore/cosign-installer@1fc5bd396d372bee37d608f955b336615edf79c8 #v3.2.0
         with:
           cosign-release: 'v2.1.1'
 
@@ -52,12 +54,15 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - run: echo "DOCKER_PLATFORMS=linux/arm64,linux/amd64" >> $GITHUB_ENV
+        if: github.ref == 'refs/heads/main' || github.tag != '' 
+        
       - name: Build and push Docker image
         id: build-and-push
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
         with:
           context: .
-          platforms: linux/arm64,linux/amd64
+          platforms: ${{ env.DOCKER_PLATFORMS }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
