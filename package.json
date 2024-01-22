@@ -59,7 +59,7 @@
     "d3-scale-chromatic": "3.0.0",
     "d3-selection": "3.0.0",
     "d3-zoom": "3.0.0",
-    "dotenv": "16.3.1",
+    "dotenv": "16.3.2",
     "highlight.js": "11.9.0",
     "js-yaml": "4.1.0",
     "layercake": "8.0.2",
