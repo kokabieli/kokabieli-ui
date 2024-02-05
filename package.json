@@ -28,7 +28,7 @@
     "@types/d3-scale": "4.0.8",
     "@types/d3-scale-chromatic": "3.0.3",
     "@types/d3-zoom": "3.0.8",
-    "@typescript-eslint/eslint-plugin": "6.19.0",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.19.0",
     "autoprefixer": "10.4.17",
     "eslint": "8.56.0",
